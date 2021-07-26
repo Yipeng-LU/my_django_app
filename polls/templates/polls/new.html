@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>New</title>
+</head>
+<body>
+	<h1>New page</h1>
+	<form action="{% url 'polls:index' %}" method='POST'>
+		{% csrf_token %}
+		<fieldset>
+			<label>Question text</label>
+			<input type='text' name='question_text' required>
+			<label>Publish date</label>
+			<input type='datetime-local' name='pub_date' required>
+			<label>Choice 1</label>
+			<input type='text' name='choice_text1' required>
+			<label>Choice 2</label>
+			<input type='text' name='choice_text2' required>
+		</fieldset>
+		<input type='submit' value='create'>
+		<a href="{% url 'polls:index' %}">Back</a>
+	</form>
+
+</body>
+</html>

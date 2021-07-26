@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>index</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+	<h1>Index page</h1>
+	<a href="{% url 'polls:new' %}">New question</a>
+	<h2>Latest questions</h2>
+	{% if latest_question_list %}
+		<ul>
+			{% for question in latest_question_list %}
+				<li>
+					<a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a>
+					<a href="{% url 'polls:edit' question.id %}">edit</a>
+					<form action="{% url 'polls:delete' question.id %}" method='POST'>
+						{% csrf_token %}
+						<input type="hidden" name="_method" value="DELETE">
+						<input type="submit" value="delete">
+					</form>
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No polls are available</p>
+	{% endif %}
+</body>
+</html>

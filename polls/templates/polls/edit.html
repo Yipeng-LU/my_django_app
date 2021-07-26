@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Edit</title>
+</head>
+<body>
+	<h1>Edit page</h1>
+	<form action="{% url 'polls:detail' question.id %}" method='POST'>
+		{% csrf_token %}
+		<input type="hidden" name="_method" value="PUT">
+		<fieldset>
+			<label>Question text</label>
+			<input type='text' name='question_text' value="{{question.question_text}}"  required>
+			<label>Publish date</label>
+			<input type='datetime-local' name='pub_date' value="{{question.pub_date}}" required>
+			<label>Choice 1</label>
+			<input type='text' name='choice_text1' value="{{choices.0.choice_text}}" required>
+			<label>Choice 2</label>
+			<input type='text' name='choice_text2' value="{{choices.1.choice_text}}" required>
+		</fieldset>
+		<input type='submit' value='Edit'>
+		<a href="{% url 'polls:index' %}">Back</a>
+	</form>
+
+</body>
+</html>
