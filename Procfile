@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn gettingstarted.wsgi
+web: gunicorn my_django_project.wsgi
